@@ -1,0 +1,24 @@
+# Wiki 目录
+
+- agentic-search.md: agentic search——用工具逐步搜索替代预建向量索引的代码检索方式
+- andrej-karpathy.md: Andrej Karpathy
+- bookkeeping-cost.md: bookkeeping 成本——知识库维护失败的经济学解释
+- boris-cherny.md: Boris Cherny——Claude Code 技术负责人
+- claude-code.md: Claude Code——Anthropic 的编程 agent 及其检索方案演进
+- context-engineering.md: context engineering——决定有限 context window 里放什么的技能
+- cursor.md: Cursor——唯一坚持向量索引的编程工具
+- hybrid-search.md: 混合检索（关键词 + 向量两路融合）
+- karpathy-llm-wiki-scheme.md: Karpathy 的 LLM 知识库维护方案（三层结构 + 三操作）
+- lancedb.md: LanceDB——嵌入式向量库，本地文件即库
+- nashsu-llm-wiki.md: nashsu 的 llm_wiki——Karpathy 方案的桌面应用实现
+- pinecone.md: Pinecone——托管 SaaS 向量库先驱
+- rrf-fusion.md: RRF（Reciprocal Rank Fusion）排名融合
+- rrf-hybrid-retrieval.md: RRF 混合检索——关键词与向量双路排名融合
+- src-01-karpathy-llm-wiki.md: 读书笔记《Karpathy 的 LLM Knowledge Base 设计》浓缩
+- src-02-boris-cherny-agentic-search.md: 读书笔记浓缩：Boris Cherny 谈 Claude Code 为什么放弃 RAG
+- src-03-context-engineering.md: source 03（读书笔记：上下文工程三件事）的浓缩页
+- src-04-vector-db-notes.md: source 04 浓缩——向量库选型速记
+- src-05-nashsu-implementation.md: 读书笔记《nashsu/llm_wiki 实现要点》浓缩
+- token-economics.md: token 经济学——token 是可以购买正确性的原料
+- turbopuffer.md: Turbopuffer——对象存储优先架构的向量库
+- vector-database.md: 向量库——RAG 存储底座的选型全景
