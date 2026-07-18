@@ -1,0 +1,37 @@
+需求：订单取消后重复发起退款，应只退一次
+
+━━ SQL 路（LLM 生成查询，吃结构化字段）
+  SELECT id, module, name FROM test_cases WHERE module IN ('订单', '支付') AND (name LIKE '%退款%' OR description LIKE '%退款%' OR name LIKE '%取消%' OR description LIKE '%重复%') LIMIT 4;
+  命中 #5 【订单】取消订单后库存回滚
+  命中 #6 【订单】退款申请审核通过后原路退回
+  命中 #8 【支付】支付回调幂等性校验
+
+━━ Vector 路（TF-IDF 余弦，embedding 的零依赖替身）
+  命中 #6 【订单】退款申请审核通过后原路退回  (0.295)
+  命中 #5 【订单】取消订单后库存回滚  (0.243)
+  命中 #8 【支付】支付回调幂等性校验  (0.199)
+  命中 #7 【订单】订单超时未支付自动关闭  (0.049)
+
+━━ 融合去重（RRF）
+  #5 【订单】取消订单后库存回滚  [SQL+Vector]
+  #6 【订单】退款申请审核通过后原路退回  [SQL+Vector]
+  #8 【支付】支付回调幂等性校验  [SQL+Vector]
+  #7 【订单】订单超时未支付自动关闭  [Vector]
+
+━━ 生成的新用例
+用例名：订单取消后重复发起退款仅退一次
+模块：订单
+优先级：P0
+描述：已支付订单取消后发起退款，重复提交多次退款申请时，系统只受理并执行一次退款，支付账户仅收到一笔退款金额，不产生重复退款流水。
+脚本：
+```python
+def test_duplicate_refund_after_cancel_refunds_once():
+    order = create_paid_order("alice")
+    cancel_order(order.id)
+    req1 = apply_refund(order.id)
+    req2 = apply_refund(order.id)  # 同一订单重复发起退款
+    approve_refund(req1.id)
+    assert order.reload().status == "REFUNDED"
+    assert refund_entries(order.id) == 1
+    assert refund_amount(order.id) == order.paid_amount
+```

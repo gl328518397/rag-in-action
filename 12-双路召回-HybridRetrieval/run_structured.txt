@@ -1,0 +1,25 @@
+需求：参考支付模块 P0 级别的用例，生成一条大额支付需要短信验证的用例
+
+━━ SQL 路（LLM 生成查询，吃结构化字段）
+  SELECT id, module, name
+FROM test_cases
+WHERE module = '支付'
+  AND priority = 'P0'
+  AND (name LIKE '%大额%' OR description LIKE '%大额%'
+       OR name LIKE '%短信%' OR description LIKE '%短信%'
+       OR name LIKE '%验证%' OR description LIKE '%验证%'
+       OR name LIKE '%限额%' OR description LIKE '%限额%')
+LIMIT 4;
+  （无命中）
+
+━━ Vector 路（TF-IDF 余弦，embedding 的零依赖替身）
+  命中 #3 【登录】验证码过期后登录失败  (0.222)
+  命中 #1 【登录】正确用户名密码登录成功  (0.122)
+  命中 #10 【支付】支付超时后订单状态回滚  (0.095)
+  命中 #15 【支付】0 元订单直接支付成功  (0.087)
+
+━━ 融合去重（RRF）
+  #3 【登录】验证码过期后登录失败  [Vector]
+  #1 【登录】正确用户名密码登录成功  [Vector]
+  #10 【支付】支付超时后订单状态回滚  [Vector]
+  #15 【支付】0 元订单直接支付成功  [Vector]
