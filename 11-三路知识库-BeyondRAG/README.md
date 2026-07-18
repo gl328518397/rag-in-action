@@ -24,3 +24,7 @@ LLM 调用默认走 `claude` CLI 子进程（装了 Claude Code 就能跑），`
 3. 回头想：你自己场景里的知识，是"稳定沉淀型"（LLM Wiki 甜蜜区）还是"天天在变型"（agentic search 甜蜜区），还是"海量分散型"（RAG 甜蜜区）
 
 两个子目录的 README 里各有一节"好与不好的复盘"——实现和运行过程中真实遇到的坑，不是事后美化的版本。
+
+## 配套书稿
+
+这两条路的选型逻辑（什么时候 RAG 赢、什么时候 Agentic Search 或 LLM Wiki 赢）在配套书稿《现代知识检索系统》里讲透：**第16章「RAG 的未来：边界在消融」**（Long Context、从 RAG 到 Knowledge OS）是这里的原理版，Agentic Search 那半篇也对应**第14章 Agentic RAG**。这个加餐给的是"跑起来是什么样"，书稿给的是"该怎么选"。相邻加餐 [12-双路召回](../12-双路召回-HybridRetrieval/) 讲的是 RAG 之内的另一条路：知识在业务数据库里时怎么建 KB。
