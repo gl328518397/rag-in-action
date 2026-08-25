@@ -81,3 +81,9 @@ codebase_chunks.json
 evaluation_set.jsonl
 .contextual.db.lock
 .standard.db.lock
+
+# Local manuscript draft. Do not commit or push this file.
+大模型应用开发RAG实战课.pdf
+
+# Local handoff archive for editors.
+99-EN.zip
